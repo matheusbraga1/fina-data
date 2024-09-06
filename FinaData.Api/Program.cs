@@ -1,3 +1,4 @@
+using FinaData.Api;
 using FinaData.Api.Common.Api;
 using FinaData.Api.Endpoints;
 
@@ -14,6 +15,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
     app.ConfigureDevEnvironment();
 
+app.UseCors(ApiConfiguration.CorsPolicyName);
 app.UseSecurity();
 app.MapEndpoints();
 
