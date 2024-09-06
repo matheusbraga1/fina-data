@@ -3,6 +3,7 @@ using FinaData.Core.Handlers;
 using FinaData.Core.Models;
 using FinaData.Core.Requests.Categories;
 using FinaData.Core.Responses;
+using System.Security.Claims;
 
 namespace FinaData.Api.Endpoints.Categories;
 
@@ -17,12 +18,13 @@ public class GetCategoryByIdEndpoint : IEndpoint
             .Produces<Response<Category?>>();
 
     private static async Task<IResult> HandleAsync(
+        ClaimsPrincipal user,
         ICategoryHandler handler,
         long id)
     {
         var request = new GetCategoryByIdRequest
         {
-            UserId = "teste@matheusbraga.io",
+            UserId = user.Identity?.Name ?? string.Empty,
             Id = id
         };
 

@@ -3,7 +3,7 @@ using FinaData.Core.Handlers;
 using FinaData.Core.Models;
 using FinaData.Core.Requests.Transactions;
 using FinaData.Core.Responses;
-using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace FinaData.Api.Endpoints.Transactions;
 
@@ -18,12 +18,13 @@ public class DeleteTransactionEndpoint : IEndpoint
             .Produces<Response<Transaction?>>();
 
     private static async Task<IResult> HandleAsync(
+        ClaimsPrincipal user,
         ITransactionHandler handler,
         long id)
     {
         var request = new DeleteTransactionRequest
         {
-            UserId = "teste@matheusbraga.io",
+            UserId = user.Identity?.Name ?? string.Empty,
             Id = id
         };
 

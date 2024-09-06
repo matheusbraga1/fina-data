@@ -5,6 +5,7 @@ using FinaData.Core.Models;
 using FinaData.Core.Requests.Categories;
 using FinaData.Core.Responses;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace FinaData.Api.Endpoints.Categories;
 
@@ -19,13 +20,14 @@ public class GetAllCategoriesEndpoint : IEndpoint
             .Produces<PagedResponse<List<Category>?>>();
 
     private static async Task<IResult> HandleAsync(
+        ClaimsPrincipal user,
         ICategoryHandler handler,
         [FromQuery]int pageNumber = Configuration.DefaultPageNumber,
         [FromQuery]int pageSize = Configuration.DefaultPageSize)
     {
         var request = new GetAllCategoriesRequest
         {
-            UserId = "teste@matheusbraga.io",
+            UserId = user.Identity?.Name ?? string.Empty,
             PageNumber = pageNumber,
             PageSize = pageSize
         };

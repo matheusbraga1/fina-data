@@ -3,7 +3,7 @@ using FinaData.Core.Handlers;
 using FinaData.Core.Models;
 using FinaData.Core.Requests.Transactions;
 using FinaData.Core.Responses;
-using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace FinaData.Api.Endpoints.Transactions;
 
@@ -18,10 +18,11 @@ public class CreateTransactionEndpoint : IEndpoint
             .Produces<Response<Transaction?>>();
 
     private static async Task<IResult> HandleAsync(
+        ClaimsPrincipal user,
         ITransactionHandler handler,
         CreateTransactionRequest request)
     {
-        request.UserId = "teste@matheusbraga.io";
+        request.UserId = user.Identity?.Name ?? string.Empty;
 
         var result = await handler.CreateAsync(request);
         return result.IsSuccess
