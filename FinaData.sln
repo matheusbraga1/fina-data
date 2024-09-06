@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinaData.Core", "FinaData.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinaData.Api", "FinaData.Api\FinaData.Api.csproj", "{6312C83A-AA94-45D6-AF76-0E202005987D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinaData.Web", "FinaData.Web\FinaData.Web.csproj", "{B74543FC-CB19-4B09-98C8-196FC04DD34D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6312C83A-AA94-45D6-AF76-0E202005987D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6312C83A-AA94-45D6-AF76-0E202005987D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6312C83A-AA94-45D6-AF76-0E202005987D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B74543FC-CB19-4B09-98C8-196FC04DD34D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B74543FC-CB19-4B09-98C8-196FC04DD34D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B74543FC-CB19-4B09-98C8-196FC04DD34D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B74543FC-CB19-4B09-98C8-196FC04DD34D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
