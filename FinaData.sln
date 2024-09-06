@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinaData.Core", "FinaData.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinaData.Api", "FinaData.Api\FinaData.Api.csproj", "{6312C83A-AA94-45D6-AF76-0E202005987D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinaData.Web", "FinaData.Web\FinaData.Web.csproj", "{B74543FC-CB19-4B09-98C8-196FC04DD34D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinaData.Web", "FinaData.Web\FinaData.Web.csproj", "{B74543FC-CB19-4B09-98C8-196FC04DD34D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,5 +30,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F395AB88-B937-4F4C-A6F3-C386810468B7}
 	EndGlobalSection
 EndGlobal
