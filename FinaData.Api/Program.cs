@@ -1,48 +1,20 @@
-using FinaData.Api.Data;
+using FinaData.Api.Common.Api;
 using FinaData.Api.Endpoints;
-using FinaData.Api.Handlers;
-using FinaData.Api.Models;
-using FinaData.Core.Handlers;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(x => { x.CustomSchemaIds(n => n.FullName); });
-
-builder.Services
-    .AddAuthentication(IdentityConstants.ApplicationScheme)
-    .AddIdentityCookies();
-builder.Services.AddAuthorization();
-
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? string.Empty;
-builder.Services.AddDbContext<AppDbContext>(options =>
-{
-    options.UseSqlServer(connectionString);
-});
-builder.Services
-    .AddIdentityCore<User>()
-    .AddRoles<IdentityRole<long>>()
-    .AddEntityFrameworkStores<AppDbContext>()
-    .AddApiEndpoints();
-
-builder.Services.AddTransient<ICategoryHandler, CategoryHandler>();
-
-builder.Services.AddTransient<ITransactionHandler, TransactionHandler>();
+builder.AddConfiguration();
+builder.AddSecurity();
+builder.AddDataContexts();
+builder.AddCrossOrigin();
+builder.AddDocumentation();
+builder.AddServices();
 
 var app = builder.Build();
 
-app.UseAuthentication();
-app.UseAuthorization();
+if (app.Environment.IsDevelopment())
+    app.ConfigureDevEnvironment();
 
-app.UseSwagger();
-app.UseSwaggerUI();
-
-app.MapGet("/", () => new { message = "OK" });
+app.UseSecurity();
 app.MapEndpoints();
-app.MapGroup("v1/identity")
-    .WithTags("Identity")
-    .MapIdentityApi<User>();
 
 app.Run();
