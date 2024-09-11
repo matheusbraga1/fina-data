@@ -6,7 +6,7 @@ public static class Configuration
 {
     public const string HttpClientName = "FinaData";
 
-    public static string BackendUrl { get; set; }
+    public static string BackendUrl { get; set; } = string.Empty;
     
     public static MudTheme Theme = new()
     {
