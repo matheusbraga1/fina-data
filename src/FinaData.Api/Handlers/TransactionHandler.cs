@@ -1,5 +1,6 @@
 ﻿using FinaData.Api.Data;
 using FinaData.Core.Common.Extensions;
+using FinaData.Core.Enums;
 using FinaData.Core.Handlers;
 using FinaData.Core.Models;
 using FinaData.Core.Requests.Transactions;
@@ -12,6 +13,9 @@ public class TransactionHandler(AppDbContext context) : ITransactionHandler
 {
     public async Task<Response<Transaction?>> CreateAsync(CreateTransactionRequest request)
     {
+        if (request.Type == ETransactionType.Withdraw && request.Amount >= 0)
+            request.Amount *= -1;
+        
         try
         {
             var transaction = new Transaction
@@ -76,8 +80,8 @@ public class TransactionHandler(AppDbContext context) : ITransactionHandler
     {
         try
         {
-            request.StartDate = DateTime.Now.GetFirstDay();
-            request.EndDate = DateTime.Now.GetLastDay();
+            request.StartDate ??= DateTime.Now.GetFirstDay();
+            request.EndDate ??= DateTime.Now.GetLastDay();
         }
         catch
         {
@@ -90,10 +94,10 @@ public class TransactionHandler(AppDbContext context) : ITransactionHandler
             .Transactions
             .AsNoTracking()
             .Where(x =>
-            x.CreatedAt >= request.StartDate &&
-            x.CreatedAt <= request.EndDate &&
+            x.PaidOrReceivedAt >= request.StartDate &&
+            x.PaidOrReceivedAt <= request.EndDate &&
             x.UserId == request.UserId)
-            .OrderBy(x => x.CreatedAt);
+            .OrderBy(x => x.PaidOrReceivedAt);
 
             var transactions = await query
                 .Skip((request.PageNumber - 1) * request.PageSize)
@@ -112,6 +116,9 @@ public class TransactionHandler(AppDbContext context) : ITransactionHandler
 
     public async Task<Response<Transaction?>> UpdateAsync(UpdateTransactionRequest request)
     {
+        if (request.Type == ETransactionType.Withdraw && request.Amount >= 0)
+            request.Amount *= -1;
+        
         try
         {
             var transaction = await context.Transactions.FirstOrDefaultAsync(x => x.Id == request.Id && x.UserId == request.UserId);
