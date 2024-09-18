@@ -20,11 +20,11 @@ public static class Configuration
         },
         Palette = new PaletteLight
         {
-            Primary = "#1EFA2D",
+            Primary = Colors.LightGreen.Accent3,
             PrimaryContrastText = new MudColor("#000000"),
             Secondary = Colors.LightGreen.Darken3,
             Background = Colors.Grey.Lighten4,
-            AppbarBackground = "#1EFA2D",
+            AppbarBackground = Colors.LightGreen.Accent4,
             AppbarText = Colors.Shades.Black,
             TextPrimary = Colors.Shades.Black,
             DrawerText = Colors.Shades.White,
@@ -34,7 +34,7 @@ public static class Configuration
         {
             Primary = Colors.LightGreen.Accent3,
             Secondary = Colors.LightGreen.Darken3,
-            AppbarBackground = Colors.LightGreen.Accent3,
+            AppbarBackground = Colors.LightGreen.Accent4,
             AppbarText = Colors.Shades.Black,
             PrimaryContrastText = new MudColor("#000000")
         }
