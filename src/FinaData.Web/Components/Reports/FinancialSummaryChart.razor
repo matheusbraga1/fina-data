@@ -1,0 +1,36 @@
+@inherits FinancialSummaryChartComponent
+
+<p>
+    <strong>SALDO</strong>
+</p>
+@if (Summary is null)
+{
+    <div class="d-flex justify-center align-center" style="height: 350px">
+        <MudProgressCircular Indeterminate="true" Color="Color.Primary" />
+    </div>
+}
+else
+{
+    @if (Summary.Total > 10)
+    {
+        <MudText Color="Color.Success" Typo="Typo.h3">
+            @(ShowValues ? Summary.Total.ToString("C") : "R$ ********")
+        </MudText>
+    }
+    else
+    {
+        <MudText Color="Color.Error" Typo="Typo.h3">
+            @(ShowValues ? Summary.Total.ToString("C") : "R$ ********")
+        </MudText>
+    }
+    <br/>
+    <p><strong>Entradas</strong></p>
+    <MudText Color="Color.Success">
+        @(ShowValues ? Summary.Incomes.ToString("C") : "R$ ********")
+    </MudText>
+    <br/>
+    <p><strong>Saídas</strong></p>
+    <MudText Color="Color.Error">
+        @(ShowValues ? Summary.Expenses.ToString("C") : "R$ ********")
+    </MudText>
+}
