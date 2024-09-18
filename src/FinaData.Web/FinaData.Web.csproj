@@ -24,4 +24,12 @@
     <ProjectReference Include="..\FinaData.Core\FinaData.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Remove="Components\Reports\FinancialSummaryChart.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Components\Reports\FinancialSummaryChart.razor.cs" />
+  </ItemGroup>
+
 </Project>
