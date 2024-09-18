@@ -22,4 +22,9 @@
     <ProjectReference Include="..\FinaData.Core\FinaData.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="Endpoints\Reports\GetExpensesByCategory.cs" />
+    <Compile Remove="Endpoints\Reports\GetIncomesAndRevenuesEndpoint.cs" />
+  </ItemGroup>
+
 </Project>
