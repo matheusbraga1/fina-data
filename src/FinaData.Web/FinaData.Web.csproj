@@ -32,4 +32,8 @@
     <Compile Remove="Components\Reports\FinancialSummaryChart.razor.cs" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\imgs\" />
+  </ItemGroup>
+
 </Project>
