@@ -35,12 +35,13 @@ public static class Endpoint
             .MapEndpoint<GetTransactionByIdEndpoint>()
             .MapEndpoint<GetTransactionByPeriodEndpoint>();
 
-        endpoints.MapGroup("v1/identity")
-            .WithTags("Identity")
-            .MapIdentityApi<User>();
+        //endpoints.MapGroup("v1/identity")
+        //    .WithTags("Identity")
+        //    .MapIdentityApi<User>();
 
         endpoints.MapGroup("v1/identity")
             .WithTags("Identity")
+            .MapEndpoint<LoginEndpoint>()
             .MapEndpoint<LogoutEndpoint>()
             .MapEndpoint<GetRolesEndpoint>();
 
