@@ -1,8 +1,4 @@
-﻿using FinaData.Api.Models;
-using Microsoft.AspNetCore.Identity;
-using System.Security.Claims;
-
-namespace FinaData.Api.Common.Api;
+﻿namespace FinaData.Api.Common.Api;
 
 public static class AppExtension
 {
