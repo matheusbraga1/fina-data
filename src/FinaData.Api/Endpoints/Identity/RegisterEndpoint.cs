@@ -1,5 +1,6 @@
 ﻿using FinaData.Api.Common.Api;
 using FinaData.Api.Models;
+using FinaData.Core.Handlers;
 using FinaData.Core.Requests.Account;
 using Microsoft.AspNetCore.Identity;
 
@@ -16,7 +17,8 @@ namespace FinaData.Api.Endpoints.Identity
 
         private static async Task<IResult> HandleAsync(
             RegisterRequest request,
-            UserManager<User> userManager)
+            UserManager<User> userManager,
+            IEmailHandler emailHandler)
         {
             if (request.Password != request.ConfirmPassword)
                 return Results.BadRequest("A senha e a confirmação de senha não coincidem.");
@@ -38,6 +40,16 @@ namespace FinaData.Api.Endpoints.Identity
                 var errors = createResult.Errors.Select(e => e.Description);
                 return Results.BadRequest(errors);
             }
+
+            var token = await userManager.GenerateEmailConfirmationTokenAsync(user);
+
+            var confirmationLink = $"http://localhost:5135/v1/emails/confirm-email?userId={user.Id}&token={Uri.EscapeDataString(token)}";
+
+            await emailHandler.SendAsync(
+                to: user.Email,
+                subject: "Confirme seu e-mail",
+                confirmationLink
+            );
 
             return Results.Ok("Usuário cadastrado com sucesso! Verifique seu e-mail para confirmar a conta.");
         }

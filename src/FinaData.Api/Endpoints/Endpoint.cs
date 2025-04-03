@@ -1,5 +1,6 @@
 ﻿using FinaData.Api.Common.Api;
 using FinaData.Api.Endpoints.Categories;
+using FinaData.Api.Endpoints.Emails;
 using FinaData.Api.Endpoints.Identity;
 using FinaData.Api.Endpoints.Reports;
 using FinaData.Api.Endpoints.Transactions;
@@ -42,6 +43,7 @@ public static class Endpoint
         endpoints.MapGroup("v1/identity")
             .WithTags("Identity")
             .MapEndpoint<LoginEndpoint>()
+            .MapEndpoint<RegisterEndpoint>()
             .MapEndpoint<LogoutEndpoint>()
             .MapEndpoint<GetRolesEndpoint>();
 
@@ -52,6 +54,10 @@ public static class Endpoint
             .MapEndpoint<GetIncomesByCategoryEndpoint>()
             .MapEndpoint<GetExpensesByCategoryEndpoint>()
             .MapEndpoint<GetFinancialSummaryEndpoint>();
+
+        endpoints.MapGroup("v1/emails")
+            .WithTags("Emails")
+            .MapEndpoint<ConfirmEmailEndpoint>();
     }
 
     private static IEndpointRouteBuilder MapEndpoint<TEndpoint>(this IEndpointRouteBuilder app) 

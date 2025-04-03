@@ -23,8 +23,8 @@ namespace FinaData.Api.Endpoints.Identity
             if (user == null)
                 return Results.BadRequest("Credenciais inválidas.");
 
-            //if (!user.EmailConfirmed)
-            //    return Results.BadRequest("E-mail não confirmado.");
+            if (!user.EmailConfirmed)
+                return Results.BadRequest("E-mail não confirmado.");
 
             var result = await signInManager.PasswordSignInAsync(user, request.Password, isPersistent: false, lockoutOnFailure: false);
             if (!result.Succeeded)
