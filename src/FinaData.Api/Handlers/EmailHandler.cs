@@ -4,11 +4,11 @@ using FinaData.Core.Handlers;
 
 namespace FinaData.Api.Handlers
 {
-    public class SmtpEmailHandler : IEmailHandler
+    public class EmailHandler : IEmailHandler
     {
         private readonly IConfiguration _config;
 
-        public SmtpEmailHandler(IConfiguration config)
+        public EmailHandler(IConfiguration config)
         {
             _config = config;
         }
@@ -43,7 +43,7 @@ namespace FinaData.Api.Handlers
                             </head>
                             <body>
                                 <div class='container'>
-                                    <h2 class='title'>Bem-vindo(a)!</h2>
+                                    <h2 class='title'>Bem-vindo(a) ao sistema de Controle Financeiro!</h2>
                                     <p>Obrigado por se registrar. Clique no botão abaixo para confirmar seu e-mail:</p>
                                     <a class='button' href='{confirmationLink}'>Confirmar E-mail</a>
                                     <p>Se você não fez este registro, ignore este e-mail.</p>
