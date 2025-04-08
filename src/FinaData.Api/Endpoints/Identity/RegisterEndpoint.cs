@@ -10,8 +10,9 @@ namespace FinaData.Api.Endpoints.Identity
     {
         public static void Map(IEndpointRouteBuilder app)
             => app.MapPost("/register", HandleAsync)
-                .WithTags("Identity")
                 .WithName("Register")
+                .WithSummary("Registra um novo usuário")
+                .WithDescription("Registra um novo usuário")
                 .Produces(StatusCodes.Status200OK)
                 .Produces(StatusCodes.Status400BadRequest);
 
