@@ -30,6 +30,14 @@
                     For="@(() => InputModel.Password)"
                     @bind-Value="InputModel.Password" />
 
+                <MudTextField 
+                    T="string"
+                    Label="Confirmar senha"
+                    HelperText="Campo obrigatório"
+                    InputType="InputType.Password"
+                    For="@(() => InputModel.ConfirmPassword)"
+                    @bind-Value="InputModel.ConfirmPassword" />
+
                 <div class="d-flex mt-8">
                     @if (IsBusy)
                     {
