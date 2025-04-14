@@ -45,7 +45,8 @@ public static class Endpoint
             .MapEndpoint<LoginEndpoint>()
             .MapEndpoint<RegisterEndpoint>()
             .MapEndpoint<LogoutEndpoint>()
-            .MapEndpoint<GetRolesEndpoint>();
+            .MapEndpoint<GetRolesEndpoint>()
+            .MapEndpoint<GetUserInfoEndpoint>();
 
         endpoints.MapGroup("v1/reports")
             .WithTags("Reports")
