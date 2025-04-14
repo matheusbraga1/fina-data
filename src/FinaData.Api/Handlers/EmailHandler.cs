@@ -22,7 +22,6 @@ namespace FinaData.Api.Handlers
                                 <meta charset='UTF-8'/>
                                 <title>Confirmação de E-mail</title>
                                 <style>
-                                    /* Exemplo de estilo inline */
                                     .container {{
                                         font-family: Arial, sans-serif;
                                         padding: 20px;
@@ -56,7 +55,7 @@ namespace FinaData.Api.Handlers
 
             using var client = new SmtpClient
             {
-                Host = _config["Email:Smtp:Host"],
+                Host = _config["Email:Smtp:Host"] ?? "",
                 Port = int.Parse(_config["Email:Smtp:Port"] ?? "587"),
                 EnableSsl = true,
                 Credentials = new NetworkCredential(_config["Email:Smtp:User"], _config["Email:Smtp:Pass"])
@@ -64,7 +63,7 @@ namespace FinaData.Api.Handlers
 
             var mail = new MailMessage
             {
-                From = new MailAddress(_config["Email:Smtp:User"], "Equipe FinaData"),
+                From = new MailAddress(_config["Email:Smtp:User"] ?? "", "Equipe FinaData"),
                 Subject = subject,
                 Body = htmlBody,
                 IsBodyHtml = true
