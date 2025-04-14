@@ -16,6 +16,7 @@ namespace FinaData.Api.Endpoints.Identity
                 .Produces(StatusCodes.Status400BadRequest);
 
         private static async Task<IResult> HandleAsync(
+            bool useCookies,
             LoginRequest request,
             SignInManager<User> signInManager,
             UserManager<User> userManager)
