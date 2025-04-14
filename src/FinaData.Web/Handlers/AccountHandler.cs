@@ -22,7 +22,7 @@ public class AccountHandler(IHttpClientFactory httpClientFactory) : IAccountHand
     {
         var result = await _client.PostAsJsonAsync("v1/identity/register", request);
         return result.IsSuccessStatusCode
-            ? new Response<string>("Usuário cadastrado com sucesso!", 201, "Usuário cadastrado com sucesso!")
+            ? new Response<string>("Confirme seu email para realizar o login.", 201, "Confirme seu email para realizar o login.")
             : new Response<string>(null, 400, "Não foi possível realizar o cadastro.");
     }
 

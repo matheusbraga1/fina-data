@@ -10,4 +10,7 @@ public class RegisterRequest : Request
     
     [Required(ErrorMessage = "Senha Inválida")]
     public string Password { get; set; } = string.Empty;
+
+    [Required(ErrorMessage = "Confirmação de senha é obrigatória")]
+    public string ConfirmPassword { get; set; } = string.Empty;
 }

@@ -64,5 +64,7 @@ public static class BuilderExtension
         builder.Services.AddTransient<ITransactionHandler, TransactionHandler>();
         
         builder.Services.AddTransient<IReportHandler, ReportHandler>();
+
+        builder.Services.AddTransient<IEmailHandler, EmailHandler>();
     }
 }
